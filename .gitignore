@@ -1,3 +1,13 @@
+#builds
+bayan_debug.exe
+bayan.exe
+
+# CMake
+build
+
+# VSCode
+.vscode
+
 # Prerequisites
 *.d
 
