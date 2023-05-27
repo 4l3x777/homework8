@@ -23,7 +23,7 @@ protected:
 	#if defined(WIN32)
 		"..\\test"
 	#else
-		"../test"
+		"test"
 	#endif
 	};
 	bayan::Bayan instance;
@@ -40,8 +40,8 @@ TEST_F(TestController, test_bayan)
 	);
 #else
 	EXPECT_TRUE(
-		new_stdout.str() == "../test/1.html\n../test/1/2.php\n\n" ||
-		new_stdout.str() == "../test/1/2.php\n../test/1.html\n\n" 
+		new_stdout.str() == "test/1.html\ntest/1/2.php\n\n" ||
+		new_stdout.str() == "test/1/2.php\ntest/1.html\n\n" 
 	);
 #endif
 }
