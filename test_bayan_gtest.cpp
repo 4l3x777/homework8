@@ -20,7 +20,11 @@ protected:
 		"bayan",
 		"-l",
 		"1",
+	#if defined(WIN32)
 		"..\\test"
+	#else
+		"../test"
+#endif
 	};
 	bayan::Bayan instance;
 	std::stringstream new_stdout;
@@ -29,7 +33,11 @@ protected:
 TEST_F(TestController, test_bayan)
 {	
     instance.getDublicates(argc, argv);  
+#if defined(WIN32)
 	ASSERT_EQ(new_stdout.str(), "..\\test\\2\\1\\2.txt\n..\\test\\2\\1.log\n..\\test\\1\\2\\2.doc\n\n..\\test\\1.html\n..\\test\\1\\2.php\n\n");
+#else
+	ASSERT_EQ(new_stdout.str(), "../test/2/1.log\n../test/2/1/2.txt\n../test/1/2/2.doc\n\n../test/1.html\n../test/1/2.php\n\n");
+#endif
 }
 
 int main(int argc, char *argv[])
