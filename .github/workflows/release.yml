@@ -79,6 +79,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set PATCH_VERSION
+        shell: cmd
+        run: |
+          mkdir build
+          cd build
+          cmake -DPATCH_VERSION=${{ github.run_number }} ../
           
       - name: Running cmake
         shell: cmd
