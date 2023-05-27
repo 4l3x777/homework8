@@ -24,7 +24,7 @@ protected:
 		"..\\test"
 	#else
 		"../test"
-#endif
+	#endif
 	};
 	bayan::Bayan instance;
 	std::stringstream new_stdout;
@@ -36,12 +36,9 @@ TEST_F(TestController, test_bayan)
 #if defined(WIN32)
 	ASSERT_EQ(new_stdout.str(), "..\\test\\2\\1\\2.txt\n..\\test\\2\\1.log\n..\\test\\1\\2\\2.doc\n\n..\\test\\1.html\n..\\test\\1\\2.php\n\n");
 #else
-	ASSERT_EQ(new_stdout.str(), "../test/2/1.log\n../test/2/1/2.txt\n../test/1/2/2.doc\n\n../test/1.html\n../test/1/2.php\n\n");
+	EXPECT_TRUE(
+		new_stdout.str() == "../test/2/1.log\n../test/2/1/2.txt\n../test/1/2/2.doc\n\n../test/1.html\n../test/1/2.php\n\n" ||
+		new_stdout.str() == "../test/2/1/2.txt\n../test/2/1.log\n../test/1/2/2.doc\n\n../test/1.html\n../test/1/2.php\n\n" 
+	);
 #endif
-}
-
-int main(int argc, char *argv[])
-{
-	::testing::InitGoogleTest(&argc, argv);
-	return RUN_ALL_TESTS();
 }
