@@ -33,11 +33,17 @@ FetchContent_MakeAvailable(Boost)
 add_executable(
     bayan 
     bayan.cpp
+    hasher.cpp
+    utils.cpp
+    main.cpp
 )
 
 add_executable(
     test_bayan_gtest 
     test_bayan_gtest.cpp
+    bayan.cpp
+    hasher.cpp
+    utils.cpp
 )
 
 set_target_properties(
@@ -59,8 +65,14 @@ target_link_libraries(
     bayan
     Boost::program_options
     Boost::algorithm
+)
+
+target_link_libraries(
+    bayan
+    Boost::program_options
+    Boost::algorithm
     Boost::crc
-    Boost::uuid
+    Boost::uuid 
 )
 
 target_link_libraries(
@@ -70,7 +82,7 @@ target_link_libraries(
     Boost::program_options
     Boost::algorithm
     Boost::crc
-    Boost::uuid
+    Boost::uuid 
 )
 
 if (MSVC)
@@ -87,6 +99,7 @@ else ()
         -Wextra 
         -pedantic 
     )
+
     target_compile_options(
         test_bayan_gtest 
         PRIVATE

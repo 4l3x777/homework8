@@ -2,7 +2,7 @@
 #include "bayan.h"
 #include <iostream>
 
-class TestController : public ::testing::Test 
+class TestBayan : public ::testing::Test 
 {
 	std::streambuf* old_stdout{nullptr};
 protected:
@@ -30,7 +30,7 @@ protected:
 	std::stringstream new_stdout;
 };
 
-TEST_F(TestController, test_bayan)
+TEST_F(TestBayan, test_bayan)
 {	
     instance.getDublicates(argc, argv);  
 #if defined(WIN32)
